@@ -2,7 +2,18 @@
 {%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'large', scale: 2 -%}
 {%- assign cart_count = cart.item_count -%}
 
+
+
+
 <div class="miniCart">
   <img class="miniCart_icon" src="{{ cart_icon }}" />
   <span class="miniCart_count">{{ cart_count }}</span>
+  <!-- EMPTY CART -->
+  <form  action="/cart/clear" method="post">
+    <input type="hidden" name="return_to" value="back" />
+    <input type="submit" value="Empty" />
+  </form>
 </div>
+
+
+

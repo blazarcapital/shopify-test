@@ -1,2 +1,96 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+
+<div class="productCard" id={{product.id}}>
+        {% assign pieces = product.title | split : ' - ' %}
+        <h1>{{product.title}}</h1>     
+ 
+        <div class="images-container">
+                {% for image in product.images %}               
+                    <img src="{{ image.src | product_img_url: '500x' }}" class="product-image">
+                {% endfor %}
+    </div>
+ 
+
+        
+
+
+<!-- TABLE FOR PRODUCT -->
+<div class="table-responsive">
+        <table class="table table-borderliness table-product">
+            <thead>
+              <tr class="d-flex">
+                <th scope="col" class="col-3">Size / Color</th>
+                <th scope="col" class="col-3">Price</th>
+                <th scope="col" class="col-3">Qty</th>
+
+<!-- 
+                <th>Size / Color </th>
+                <th>Price</th>
+                <th style="text-align: center;">Qty</th> -->
+              </tr>
+            </thead>
+            <tbody>
+                {% for variant in product.variants%}
+                
+                <tr class="d-flex">
+
+<!-- COLOR & SIZE -->
+                    <td class="col-3">
+                        <div>
+                        {% if pieces[1] == null %}
+                            {% for options in variant.options %}
+                                {% assign option = options | split : ' ' %}
+                                    <p>{{option[0]}} - {{option[1]}}</p>           
+                            {% endfor%}
+                        {% else %}
+                            <p>{{pieces[2]}} - {{pieces[1]}} </p>
+                       {% endif %}
+                    </div>
+                
+                    </td>
+                    <!-- PRICE -->
+                    <td class="col-3">
+                        <p>
+                            {{ variant.price | money }}
+                                {% if variant.compare_at_price > variant.price %}
+                                        <br />
+                                        <del>{{ variant.compare_at_price | money }}</del>
+                                {% endif %}
+                        </p>
+                    </td>
+                <!-- FORM TO SUBMIT -->
+                    <td class="col-3">
+                        {% if product.available %}
+                            <form action="/cart/add" method="post">
+                                <input type="hidden" name="id" value="{{ variant.id }}" />
+                                <input type="number" name="quantity" value="1" min="1" />
+                                <input type="hidden" name="return_to" value="back" />
+                                <input type="submit" value="Add to Cart" class="btn btn-success"/>
+                            </form>
+                   {% endif %} 
+
+                    </td>
+                </tr>
+                {% endfor %}  
+            </tbody>
+        </table>
+
+    </div>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</div>
