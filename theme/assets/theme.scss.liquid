@@ -161,7 +161,7 @@ a:hover{
   cursor:pointer;
   background:#eee;
 }
-.productCard:hover .miniCart_icon_product{
+.productCard:hover .addToCart_icon{
   visibility:visible;
 }
 .productCard div,
@@ -178,13 +178,36 @@ a:hover{
   position:relative;
   padding-bottom:5%;
 }
-.miniCart_icon_product{
+.miniCart_icon_product,
+.addToCart_icon{
+  background-repeat:no-repeat;
+  background-size:contain;
+  background-image : url('icon-shopping-cart.png');
   transition: all .5s;
   position:absolute;
-  width:10%;
+  width:20%;
+  height:20%;
   right:0;
   bottom:5%;
   @media (min-width: 768px) {
     visibility:hidden;
   }
+}
+
+/*Alert modal*/
+
+.alert.hidden{
+  transform:translateY(-100vh);
+}
+.alert{
+  position:fixed;
+  transition:all .3s;
+  top:0;
+  left:0;
+  right:0;
+  height:10vw;
+  background:#ddd;
+  text-align:center;
+  display:grid;
+  align-content:center;
 }

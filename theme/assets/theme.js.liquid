@@ -1,31 +1,36 @@
-const addToCartBtns = document.querySelectorAll('.miniCart_icon_product');
+
 let cartCountSpan = document.querySelector('.miniCart_count')
-
-
-{% comment %} addToCartBtns.forEach(cartBtn => {
-     cartBtn.addEventListener("click", addToCart)
- }) {% endcomment %}
 
 
 
  console.log(cartCount) 
 
-
-
-function addItem() {
-   {% comment %} let data = {"id":event.target.id, "quantity":quantity} {% endcomment %}
-   
+function addItem(id) {
     event.preventDefault();
-    console.log(form)
-    console.log(cartCount)
-      $.ajax({
+    let productID = $('input[name=id]').val()
+    console.log(productID);
+    $.ajax({
       type: 'POST', 
       url: '/cart/add/',
       dataType: 'json', 
-      data: $('#add-to-cart').serialize()
-      }).done( (response) => {
+      data: $('#'+id).serialize()
+    }).done( (response) => {
           console.log(response)
          ++cartCount;
          cartCountSpan.innerHTML = cartCount;
-      }) 
+         showSuccessMessage(response.title)
+    }).fail( (error)=> {
+      console.log("error")
+    })
+}
+
+function showSuccessMessage(productTitle){
+  console.log($(".alert"))
+    $('.alert').removeClass('hidden')
+    let text = `<h2>${productTitle} had been added to your cart</h2>`;
+    $('.alert').append(text);
+   setTimeout(()=>{
+     $('.alert').addClass('hidden');
+     $('.alert').empty();
+   }, 5000);
 }
