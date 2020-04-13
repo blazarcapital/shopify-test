@@ -114,10 +114,77 @@ img, picture {
 }
 
 /* Collection hero */
-.collectionHero {}
+.collectionHero{
+  position:relative;
+}
+.collectionHero h1 {
+  position:absolute;
+  text-align:center;
+  top:40%;
+  color:$colour-white;
+}
 
 /* Product List */
-.productList {}
+.productsList{
+  display:grid;
+  grid-gap:5vw;
+  margin: 2vw 0;
+  @media (min-width: 768px) {
+  margin: 2vw 5vw;
+    grid-template-columns:1fr 1fr 1fr;
+   }
 
+}
+.pagination{
+  grid-column:1/-1;
+  text-align:center;
+}
+.pagination span{
+  padding: 1% .5%;
+}
+.pagination .current{
+  border:1px solid #eee;
+  padding: 1%;
+}
+a, a:visited{
+  color:$colour-primary;
+}
+a:hover{
+  text-decoration:underline;
+}
 /* Product Card */
-.productCard {}
+.productCard {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  padding:5%;
+  cursor:pointer;
+  background:#eee;
+}
+.productCard:hover .miniCart_icon_product{
+  visibility:visible;
+}
+.productCard div,
+.productCard p{
+  grid-column:1/-1;
+}
+.productCard p{
+  font-style:italic;
+}
+.productCard h3{
+  text-align:right;
+}
+.productCard div{
+  position:relative;
+  padding-bottom:5%;
+}
+.miniCart_icon_product{
+  transition: all .5s;
+  position:absolute;
+  width:10%;
+  right:0;
+  bottom:5%;
+  @media (min-width: 768px) {
+    visibility:hidden;
+  }
+}

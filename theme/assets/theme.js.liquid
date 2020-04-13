@@ -1,1 +1,31 @@
+const addToCartBtns = document.querySelectorAll('.miniCart_icon_product');
+let cartCountSpan = document.querySelector('.miniCart_count')
 
+
+{% comment %} addToCartBtns.forEach(cartBtn => {
+     cartBtn.addEventListener("click", addToCart)
+ }) {% endcomment %}
+
+
+
+ console.log(cartCount) 
+
+
+
+function addItem() {
+   {% comment %} let data = {"id":event.target.id, "quantity":quantity} {% endcomment %}
+   
+    event.preventDefault();
+    console.log(form)
+    console.log(cartCount)
+      $.ajax({
+      type: 'POST', 
+      url: '/cart/add/',
+      dataType: 'json', 
+      data: $('#add-to-cart').serialize()
+      }).done( (response) => {
+          console.log(response)
+         ++cartCount;
+         cartCountSpan.innerHTML = cartCount;
+      }) 
+}

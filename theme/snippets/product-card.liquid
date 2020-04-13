@@ -1,2 +1,24 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+{%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'large', scale: 2 -%}
+
+<div class="productCard" >
+    {% assign product_image ={{product.images}} %}
+    {%assign title = {{product.title}} | split: "-" %}
+    <div>
+        <img alt="{{product.media[0].alt}}" src="//cdn.shopify.com/s/files/1/0259/0428/3745/{{ product_image }}"/>
+        
+        <form action="/cart/add/" method="post" id="add-to-cart">
+        <input type="hidden" name="id" value="{{ product.variants[0].id }}" /> 
+        <input type="number" name="quantity"  value/>
+        <input type="submit" value="Add to Cart" class="btn" onClick="addItem(); return false;"/>
+        {% comment %} <img class="miniCart_icon_product"  src="{{ cart_icon }}" id={{ product.variants[0].id }} /> {% endcomment %}
+        </form>
+    </div>
+
+   
+  <h2>{{title[0]}}</h2>
+    <h3>{{product.price}} EUR</h3>
+    <p>{{title[1]}} - {{title[2]}}</p>
+
+ 
+</div>
