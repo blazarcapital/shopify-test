@@ -1,14 +1,10 @@
 
 let cartCountSpan = document.querySelector('.miniCart_count')
 
-
-
- console.log(cartCount) 
-
 function addItem(id) {
     event.preventDefault();
     let productID = $('input[name=id]').val()
-    console.log(productID);
+    {% comment %} console.log(productID); {% endcomment %}
     $.ajax({
       type: 'POST', 
       url: '/cart/add/',
@@ -25,7 +21,6 @@ function addItem(id) {
 }
 
 function showSuccessMessage(productTitle){
-  console.log($(".alert"))
     $('.alert').removeClass('hidden')
     let text = `<h2>${productTitle} had been added to your cart</h2>`;
     $('.alert').append(text);
