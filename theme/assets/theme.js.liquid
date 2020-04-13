@@ -1,5 +1,12 @@
 
 let cartCountSpan = document.querySelector('.miniCart_count')
+let cartItemsContainer = $('.miniCart')
+
+console.log(cartItemsContainer)
+cartItemsContainer.on ('click', () => {
+  console.log('click')
+    $('.cartItems').toggleClass('hidden')
+})
 
 function addItem(id) {
     event.preventDefault();
@@ -15,9 +22,41 @@ function addItem(id) {
          ++cartCount;
          cartCountSpan.innerHTML = cartCount;
          showSuccessMessage(response.title)
+        updateCart(response)
     }).fail( (error)=> {
       console.log("error")
     })
+}
+function updateCart(response){
+  let match = false;
+       document.querySelectorAll('.cartItems div ').forEach(item => {
+        let title = item.querySelector('.title')
+        let oldQuantity = Number(item.querySelector('.quantity').textContent)
+                if(response.title == title.textContent){
+         item.querySelector('.quantity').textContent= ++oldQuantity
+          match = true;
+         return;
+        }
+      })
+      if(match ===false){
+      console.log('no match')
+          let newDiv = document.createElement('div');
+          let aRemove = document.createElement('a')
+          aRemove.setAttribute('href', '/cart/change?line={{ forloop.index }}&quantity=0"')
+          aRemove.textContent = "Remove";
+          let pTitle = document.createElement('p')
+          pTitle.textContent = response.title
+          pTitle.className= 'title'
+          let pQuantity = document.createElement('p')
+          pQuantity.textContent = response.quantity
+          pQuantity.className = 'quantity'
+          let pPrice = document.createElement('p')
+          pPrice.textContent = "€" + response.price;
+          pPrice.className = 'price'
+          newDiv.append(aRemove, pTitle, pQuantity, pPrice)
+          $('.cartItems').append(newDiv);
+        
+      }
 }
 
 function showSuccessMessage(productTitle){
@@ -29,3 +68,7 @@ function showSuccessMessage(productTitle){
      $('.alert').empty();
    }, 5000);
 }
+
+
+
+console.log(cartItems)

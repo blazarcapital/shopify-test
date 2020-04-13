@@ -1,11 +1,20 @@
 {% comment %} Mini cart {% endcomment %}
 {%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'large', scale: 2 -%}
 {%- assign cart_count = cart.item_count -%}
+{%- assign cart_items = cart.items -%}
 
 <div class="miniCart">
   <img class="miniCart_icon" src="{{ cart_icon }}" />
   <span class="miniCart_count">{{ cart_count }}</span>
+<div class="cartItems hidden">
+{%for item in cart_items%}
+  <div>
+   <a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
+    <p class="title">{{item.title}}</p>
+    <p class="quantity">{{item.quantity}}</p>  
+    <p class="price">€{{item.price}}</p>
+  </div>
+{%endfor%}
 </div>
-
-
+</div>
 
