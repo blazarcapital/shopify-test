@@ -1,2 +1,15 @@
 {% comment %} Product list {% endcomment %}
-<section class="productsList section"></section>
+
+<section class="productList section">
+{% paginate collection.products by 4 %}
+  <form method="post" action="/cart/add">
+    {% for product in collection.products %}
+
+    {% assign productInfo = product.title | split: " - " %}
+
+    {% include 'product-card' with product %}
+
+    {% endfor %}
+  </form> 
+{% endpaginate %}
+</section>
