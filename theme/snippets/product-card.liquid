@@ -1,2 +1,19 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+<div class="productCard">
+    <div class="image-container">
+     {{ product.featured_image | img_url: '276x276' | img_tag: alt: product.title }}
+      {%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'large', scale: 2 -%}
+      <button class="cart-button" data-id="{{product.id}}" data-quantity="1">
+          <img class="miniCart_icon" src="{{ cart_icon }}" />
+      </button>
+    </div>
+
+     {% assign item = product.title | split: " - " %}
+     {% assign title = item[0] %}
+     {% assign color = item[1] %}
+     {% assign size = item[2] %}
+
+      <b>{{ title }}</b> <span class="float-right">{{ product.price | money }}</span>
+      <br>
+      {{ size }} - {{ color }}
+</div>

@@ -1,2 +1,5 @@
 {% comment %} Collection hero banner {% endcomment %}
-<section class="collectionHero section"></section>
+<section class="collectionHero section">
+    <h1 class="center">{{ collection.title }}</h1>
+    {{ collection.image | img_url: '4472x' | img_tag: alt: collection.title }}
+</section>
