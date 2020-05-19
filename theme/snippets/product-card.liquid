@@ -3,7 +3,7 @@
     <div class="image-container">
      {{ product.featured_image | img_url: '276x276' | img_tag: alt: product.title }}
       {%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'large', scale: 2 -%}
-      <button class="cart-button" data-id="{{product.id}}" data-quantity="1">
+      <button class="cart-button" data-id="{{product.variants[0].id}}" data-quantity="1">
           <img class="miniCart_icon" src="{{ cart_icon }}" />
       </button>
     </div>

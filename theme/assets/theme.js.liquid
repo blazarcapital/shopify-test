@@ -1,19 +1,30 @@
-function addToCart(id, quantity) {
-    jQuery.post('/cart/add.js', {
-      items: [
-        {
-          id: id,
-          quantity: quantity
-        }
-      ]
-    }, (data) => {
-       console.log(data);
+const cartItemCounter = document.querySelector('span.miniCart_count');
+
+function refreshCounter() {
+  fetch('/cart.js')
+    .then(response => response.json())
+    .then((data) => {
+      var newCount = data.item_count;
+      cartItemCounter.innerHTML = newCount;
     })
 }
 
+function addToCart(id, quantity) {
+  fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({items: [{ id: id, quantity: quantity }]})
+  })
+  .then(response => response.json())
+  .then(() => refreshCounter());
+}
+
 $('.cart-button').click(function(e) {
-    var id = $(this).data('id')
-    var quantity = $(this).data('quantity')
+    const id = $(this).data('id')
+    const quantity = $(this).data('quantity')
     addToCart(id, quantity);
 })
 
