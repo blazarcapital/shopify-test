@@ -1,1 +1,5 @@
-
+Shopify.onItemAdded = function(cart) {
+	jQuery.getJSON('/cart.js', function(cart) {
+  		$('.miniCart_count').html(cart.item_count);
+	});
+};

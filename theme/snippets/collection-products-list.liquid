@@ -1,2 +1,14 @@
 {% comment %} Product list {% endcomment %}
-<section class="productsList section"></section>
+<section class="productsList section">
+    {% paginate collection.products by 12 %}
+    {% for product in collection.products %}
+        {% include 'product-card' with product %}
+    {% endfor %}
+    {% if paginate.previous%}
+        <a href="{{ paginate.previous.url }}">{{ paginate.previous.title }}</a>
+    {% endif %}
+    {% if paginate.next.is_link %}
+        <a href="{{ paginate.next.url }}">{{ paginate.next.title }}</a>
+    {% endif %}
+    {% endpaginate %}
+</section>

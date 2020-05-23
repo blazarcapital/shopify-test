@@ -1,2 +1,11 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+{%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'large', scale: 1 -%}
+<div class="productCard">
+    {% assign productTexts = product.title | split: '-' %}
+    <img src="{{product.featured_image.src| product_img_url: '300x300'}}" />
+    <p class="left bold">{{productTexts[0]}}</p><p class="right">{{product.price | money}}</p>
+    <p class="italics left">{{productTexts[1]}} - {{productTexts[2]}}</p>
+    <div class="addToCart" onclick="Shopify.addItem({{product.variants.first.id}}, 1)">
+        <img class="miniCart_icon" src="{{ cart_icon }}" />
+    </div>
+</div>
