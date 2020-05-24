@@ -1,2 +1,9 @@
 {% comment %} Collection hero banner {% endcomment %}
-<section class="collectionHero section"></section>
+{%- assign collection_title = collection.title -%}
+{%- assign collection_image = collection.image | img_url: 'large', scale: 2  -%}
+
+<section class="collectionHero section" style="background-image: url({{ collection_image }});">
+    <div>
+        {{ collection_title }}   
+    </div>
+</section>
