@@ -184,3 +184,28 @@ img, picture {
     }
   }
 }
+
+/* pagination */ 
+.productsListPagination {
+  font-weight: 500;
+  font-size: 2rem;
+  text-align: center;
+  padding: 0 0 2rem;
+
+  & a {
+    color: $colour-primary;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  & .page {
+    margin: 0 1rem;
+
+    &.current {
+      text-decoration: underline;
+    }
+  }
+}

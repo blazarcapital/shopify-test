@@ -1,6 +1,15 @@
 {% comment %} Product list {% endcomment %}
-<section class="productsList section">
-    {% for product in collection.products %}
-        {%- include 'product-card' -%}
-    {% endfor %}
-</section>
+
+{%- paginate collection.products by 15 -%}
+    <section class="productsList section">
+        {% for product in collection.products %}
+            {%- include 'product-card' -%}
+        {% endfor %}
+    </section>
+    
+    <section class="productsListPagination section">
+        {{ paginate | default_pagination: next: '>>', previous: '<<' }}
+    </section>
+{%- endpaginate -%}
+
+
