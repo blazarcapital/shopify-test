@@ -1,5 +1,6 @@
 {% comment %} Product card {% endcomment %}
 
+{%- assign product_id = product.variants[0].id -%}
 {%- assign product_title_summary = product.title | split: '-' -%}
 {%- assign product_title = product_title_summary[0] -%}
 {%- assign product_colour = product_title_summary[1] -%}
@@ -13,7 +14,7 @@
         <div>
             <img src="{{ product_image }}">
         </div>
-        <div class="productCart_image_cart">
+        <div class="productCart_image_cart" onclick="addToCart({{ product_id }}, 1)">
             <img src="{{ cart_icon }}" title="Add to cart">
         </div>
     </div>

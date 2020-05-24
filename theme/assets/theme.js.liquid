@@ -1,1 +1,14 @@
+function addToCart(product_id, quantity) {
+    Shopify.addItem(product_id, quantity, function(){
+        updateCart();
+    });
+}
+
+function updateCart() {
+    const element = document.querySelector('.miniCart > span.miniCart_count');
+    
+    const counter = parseInt(element.textContent, 10);
+
+    element.textContent = counter + 1;
+}
 
