@@ -1,2 +1,6 @@
 {% comment %} Product list {% endcomment %}
-<section class="productsList section"></section>
+<section class="productsList section">
+    {% for product in collection.products %}
+        {%- include 'product-card' -%}
+    {% endfor %}
+</section>

@@ -128,7 +128,20 @@ img, picture {
 }
 
 /* Product List */
-.productList {}
+.productsList {
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
 /* Product Card */
-.productCard {}
+.productCard {
+  padding: 1rem;
+  flex: 1 0 97%;  
+
+  @media (min-width: 768px) {
+    flex: 1 0 33%;
+    max-width: 33%;
+  }
+}
