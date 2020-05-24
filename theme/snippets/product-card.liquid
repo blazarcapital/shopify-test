@@ -1,2 +1,33 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+
+{%- assign product_title_summary = product.title | split: '-' -%}
+{%- assign product_title = product_title_summary[0] -%}
+{%- assign product_colour = product_title_summary[1] -%}
+{%- assign product_size = product_title_summary[2] -%}
+{%- assign product_price = product.price | money -%}
+{%- assign product_image = product.images[0].src | product_img_url: 'medium' -%}
+{%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'small' -%}
+
+<div class="productCard">
+    <div class="productCart_image">
+        <div>
+            <img src="{{ product_image }}">
+        </div>
+        <div class="productCart_image_cart">
+            <img src="{{ cart_icon }}" title="Add to cart">
+        </div>
+    </div>
+    <div class="productCart_mainInfo">
+        <div class="productCart_mainInfo_title">
+            {{ product_title }}
+        </div>
+        <div>
+            {{ product_price}}
+        </div>
+    </div>
+    <div class="productCart_subtitle">
+        {{ product_colour }}  -  {{ product_size }}
+    </div>
+    
+</div>
+ 
