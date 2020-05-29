@@ -121,3 +121,253 @@ img, picture {
 
 /* Product Card */
 .productCard {}
+
+/* Start of test code */
+/* Media Queries */
+/* Mobile */
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
+/* Styles */
+.collectionHero {
+  height: 15vh;
+
+  .collection-banner-title {
+    font-size: 24px;
+  }
+}
+
+.productsListItems {
+  margin: 10px 10px;
+  flex-direction: column;
+  align-items: center;
+
+.productCard {
+  margin: 25px;
+  max-width: 300px;
+
+  .productCardImage {
+    width: 300px;
+    height: 300px;
+}
+}
+}
+}
+
+/* tablet */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1223px) {
+/* Styles */
+.collectionHero {
+  height: 25vh;
+
+  .collection-banner-title {
+    font-size: 28px;
+  }
+}
+
+.productsList {
+  .productsListNavigationIndex {
+    font-size: 16px;
+  }
+
+  .productsListNavigation {
+    font-size: 16px;
+  }
+}
+
+.productsListItems {
+  margin: 30px 30px;
+
+.productCard {
+  margin: 25px;
+
+  .productCardImage {
+    width: 300px;
+    height: 300px;
+}
+}
+}
+}
+
+/* Desktops and laptops */
+@media only screen  and (min-width : 1224px) {
+/* Styles */
+.collectionHero {
+  height: 45vh;
+  
+  .collection-banner-title {
+    font-size: 36px;
+  }
+}
+
+.productsListItems {
+  margin: 50px 50px;
+
+.productCard {
+  margin: 25px;
+
+  .productCardImage {
+    width: 325px;
+    height: 325px;
+}
+
+.productCardAddToCartBtn {
+  opacity: 0;
+}
+
+.productCardImage:hover .productCardAddToCartBtn {
+  opacity: 1;
+}
+
+.productCardAddToCartBtn {
+  transition: all 0.25s ease-in-out;
+}
+}
+}
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+  /* Styles */
+  .collectionHero {
+    height: 45vh;
+    
+    .collection-banner-title {
+      font-size: 36px;
+    }
+  }
+  
+  .productsListItems {
+    margin: 50px 50px;
+  
+  .productCard {
+    margin: 25px;
+  
+    .productCardImage {
+      width: 500px;
+      height: 500px;
+  }
+
+  .productCardAddToCartBtn {
+    opacity: 0;
+  }
+  
+  .productCardImage:hover .productCardAddToCartBtn {
+    opacity: 1;
+  }
+  
+  .productCardAddToCartBtn {
+    transition: all 0.25s ease-in-out;
+  }
+  }
+  }
+  }
+
+/* Media Queries End */
+
+.hero-banner {
+  width: 100vw;
+}
+
+.collectionHero {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .collection-banner-title {
+    width: auto;
+    color: #fff;
+  }
+}
+
+.productsList {
+  .productsListItems {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: auto;
+  }
+
+  .productsListNavigationIndex {
+    display: flex;
+    justify-content: center;
+    margin: 35px 0px;
+  }
+
+  .productsListNavigation {
+    display: flex;
+    padding-bottom: 5vh;
+    position: relative;
+  
+    a {
+      color: black;
+      margin: 0px 10px;
+    }
+  
+    a:first-child {
+      width: 75px;
+      position: absolute;
+      left: 50%;
+      transform: translate(-150%, 0);
+    }
+  
+    a:last-child {
+      width: 75px;
+      position: absolute;
+      left: 50%;
+      transform: translate(30%, 0);
+    }
+  
+    span {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
+.productCard {
+  .productCardDescription {
+    display: flex;
+    
+    span:first-child {
+      margin-right: 10px;
+    }
+
+    span:last-child {
+      margin-left: 10px;
+    }
+  }
+  
+  .productCardImage {
+    position: relative;
+
+    .productCardAddToCartBtn:hover {
+      transform: scale(1.2);
+    }
+    
+    .productCardAddToCartBtn {
+      background-image: url("../assets/icon-shopping-cart.png");
+      background-size: 25px;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 40px;
+      height: 40px;
+      background-color: #fff;
+      border: none;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+  }
+  
+  .productCardHeader {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+
+    .productCardTitle {
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+}

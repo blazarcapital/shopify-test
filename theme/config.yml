@@ -1,0 +1,8 @@
+dev:
+  password: b94f0bb984fc8b7d370aa36eac473104
+  theme_id: '83176882273'
+  store: beefy-miracle.myshopify.com
+  timeout: 30s
+  ignore_files:
+    - config/settings_data.json
+    - locales/

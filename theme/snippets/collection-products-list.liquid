@@ -1,2 +1,23 @@
 {% comment %} Product list {% endcomment %}
-<section class="productsList section"></section>
+<section class="productsList section">
+    {% paginate collection.products by 12 %}
+    <div class="productsListItems">
+        {% for product in products %}
+        {% include 'product-card.liquid' with product %}
+        {% endfor %}
+    </div>
+    <div class="productsListNavigationIndex">
+        <span>Items {{ paginate.current_offset }} to {{ paginate.current_offset | plus: paginate.page_size }} of
+            {{ paginate.items }} total</span>
+    </div>
+    <div class="productsListNavigation">
+        {% if paginate.previous.is_link %}
+        <a href="{{ paginate.previous.url }}">{{ paginate.previous.title }}</a>
+        {% endif %}
+        <span>{{ paginate.current_page }}</span>
+        {% if paginate.next.is_link %}
+        <a href="{{ paginate.next.url }}">{{ paginate.next.title }}</a>
+        {% endif %}
+    </div>
+    {% endpaginate %}
+</section>

@@ -1,2 +1,26 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+<!-- splits the title into a string array 0: title, 1: size, 2: color -->
+{% assign productInfo = product.title | split: '-' %}
+<div class="productCard">
+    <div class="productCardImage"
+        style="background-image: url({{ product.featured_image | img_url: "500x500" }}); background-repeat: no-repeat; background-size: cover; background-position: center;">
+        <form action="{{ routes.cart_add_url }}" method="post" id="productCardAddToCart">
+            <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+            <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+            <button type="submit" class="productCardAddToCartBtn" />
+        </form>
+    </div>
+    <div class="productCardHeader">
+        <span class="productCardTitle">{{ productInfo[0] }}</span>
+        <span>{{ product.price | money }}</span>
+    </div>
+    <div class="productCardDescription">
+        {% if productInfo[1] !=  blank %}
+        <span>{{ productInfo[1] }}</span>
+        -
+        {% endif %}
+        {% if productInfo[2] !=  blank %}
+        <span>{{ productInfo[2] }}</span>
+        {% endif %}
+    </div>
+</div>

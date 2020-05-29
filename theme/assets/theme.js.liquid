@@ -1,1 +1,31 @@
+$("#productCardAddToCart").submit((e) => {
+    e.preventDefault();
+    // Add item to cart
+    $.ajax({
+        type: "POST",
+        url: '/cart/add.js',
+        dataType: 'json',
+        data: {
+            items: [
+              {
+                quantity: e.target[1].value,
+                id: e.target[0].value,
+              }
+            ]
+          },
+        success: addToCartSuccess(),
+        error: function (jqXHR, textStatus, errorThrown) { addToCartError(jqXHR, textStatus, errorThrown); }
+    });
+});
 
+const addToCartSuccess = () => {
+    // Increment the cart count
+    document.getElementsByClassName("miniCart_count")[0].innerHTML = Number(document.getElementsByClassName("miniCart_count")[0].innerHTML) + 1;
+    alert("Item added to cart");
+}
+
+const addToCartError = (jqXHR, textStatus, errorThrown) => {
+    /* Uncomment to debug add to cart error
+    console.log(jqXHR, textStatus, errorThrown); */
+    alert("Failed to add item to cart")
+}
