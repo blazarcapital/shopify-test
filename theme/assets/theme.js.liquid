@@ -1,1 +1,55 @@
+window.onload = function() {
+    
+    let addToCart = document.querySelectorAll('.js-add-to-cart');
 
+    for (let i = 0; i < addToCart.length; i++) {
+        let el = addToCart[i];
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            let id = el.dataset.variant;
+            addItemToCart(id);
+            console.log(id)
+        })
+    }
+
+    function addItemToCart(id) {
+
+        let data = {
+            id: id,
+            quantity: 1
+        };
+
+        window.fetch('/cart/add.js', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((product) => getCart())
+            .catch((error) => {
+                throw new Error(error);
+            });
+    }
+
+    function getCart (){
+        window.fetch('/cart.js', {
+            credentials: 'same-origin',
+            method: 'GET',
+        })
+        .then((response) => response.json())
+        .then((cart) => cartItemCount(cart))
+        .catch((error) => {
+            throw new Error(error);
+        });
+    }
+
+
+    function cartItemCount(cart) {
+        console.log(cart);
+        let cartCount = document.querySelector('.miniCart .miniCart_count');
+        cartCount.innerHTML = cart.item_count;
+    }
+}

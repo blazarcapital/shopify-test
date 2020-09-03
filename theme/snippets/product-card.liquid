@@ -1,2 +1,21 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+{% assign size =  %}
+<div class="productCard">
+    <a href="{{product.url}}">
+    <div class="img-wrapper">
+        <img src="{{ product.featured_media | img_url:'500x' }}" alt="">
+        <span data-variant="{{product.variants[0].id}}" class="js-add-to-cart add-to-cart"></span>
+    </div>
+    <div class="content-wrapp">
+        <div class="content">
+            {% assign titles = product.title | split: '-' %}
+            <p><strong>{{ titles[0]}}</strong></p>
+            <p>{{ titles[1]}} - {{ titles[2]}}</p>
+        </div>
+        <div class="price">
+            <span>{{ product.price | money }}</span>
+        </div>
+
+    </div>
+    </a>
+</div>
