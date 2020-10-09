@@ -15,7 +15,8 @@ $colour-white: #fff;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -32,11 +33,19 @@ body {
 }
 
 /* Typography */
-a, a:active, a:hover, a:visited {
+a,
+a:active,
+a:hover,
+a:visited {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $font-header;
   font-weight: normal;
   line-height: 1.25;
@@ -46,16 +55,14 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-img, picture {
+img,
+picture {
   display: inline-block;
   vertical-align: middle;
   max-width: 100%;
   width: 100%;
   height: auto;
 }
-
-/* Containers */
-.main {}
 
 .container {
   position: relative;
@@ -114,10 +121,103 @@ img, picture {
 }
 
 /* Collection hero */
-.collectionHero {}
+.collectionHero {
+  position: relative;
+
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $colour-white;
+    text-align: center;
+    font-size: 5rem;
+
+    @media screen and (max-width: 480px) {
+      font-size: 3rem;
+    }
+  }
+}
 
 /* Product List */
-.productList {}
+.productsList {
+  max-width: 144rem;
+  margin: 3rem auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* Product Card */
-.productCard {}
+.productCard {
+  a {
+    position: relative;
+    display: block;
+
+    &:hover .productCard__atc {
+      display: block;
+    }
+
+    .productCard__atc {
+      display: none;
+      position: absolute;
+      z-index: 1;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      background-color: $colour-white;
+      border: none;
+      padding: 1rem;
+      cursor: pointer;
+
+      @media screen and (max-width: 768px) {
+        display: block;
+      }
+    }
+  }
+
+  .productCard__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .productCard__variants p {
+    margin: 0;
+    font-style: italic;
+  }
+}
+
+/* Pagination */
+.pagination {
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .pagination__text {
+    margin: 0 1.3rem;
+  }
+
+  .pagination__button {
+    border: none;
+    background-color: $colour-primary;
+    color: $colour-white;
+    cursor: pointer;
+    padding: 1rem 1.3rem;
+
+    &:disabled {
+      cursor: auto;
+      opacity: 0.7;
+    }
+  }
+}
