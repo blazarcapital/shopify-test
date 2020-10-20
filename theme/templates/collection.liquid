@@ -5,9 +5,7 @@
 {% include 'collection-products-list' with collection %}
 
 
-
-
-<h1>{{ collection.title }}</h1>
+ <h1>{{ collection.title }}</h1>
   <div class="grid-collection">
     {% for product in collection.products %}
       <div class="grid-product">
@@ -15,20 +13,10 @@
           <img src="{{ product.featured_image.src | img_url: '300x' }}" alt="{{ product.featured_image.alt | escape }}">
         </a>
         <a href="{{ product.url }}">{{ product.title }}</a>
-          <p>
-          <span aria-hidden="true">—</span>
-          {%- if product.price_varies -%}
-            <span class="visuallyhidden">Starting at</span>
-            {{ product.price_min | money_without_trailing_zeros }}
-            <span aria-hidden="true">+</span>
-          {%- else -%}
-            {{ product.price | money_without_trailing_zeros }}
-          {%- endif -%}
-        </p>
-        <p>
-          <span class="visuallyhidden">by</span>
-          {{ product.vendor }}
-        </p>
+          <p>{{ product.price | money }}</p>
+          {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
       </div>
     {% endfor %}
-  </div>  
+  </div> 
+
+ 
