@@ -1,2 +1,7 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+
+
+<form method="post" action="card/add">
+<input type="hidden" name="id" value="{{product.varients.filter}}">
+<input type="submit" value="add to cart" class="button"/>
+</form>
