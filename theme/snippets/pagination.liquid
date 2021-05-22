@@ -1,0 +1,31 @@
+<ul class="pagination">
+  {% unless paginate.previous.is_link %}
+  <li>
+    <button class="pagination__button" disabled>
+      Prev
+    </button>
+  </li>
+  {% else %}
+  <li>
+    <a href="{{ paginate.previous.url }}" class="pagination__button">
+      Prev
+    </a>
+  </li>
+  {% endunless %}
+  <li class="pagination__text">
+    {{ 'general.pagination.current_page' | t: current: paginate.current_page, total: paginate.pages }}
+  </li>
+  {% unless paginate.next.is_link %}
+  <li>
+    <button class="pagination__button" disabled>
+      Next
+    </button>
+  </li>
+  {% else %}
+  <li>
+    <a href="{{ paginate.next.url }}" class="pagination__button">
+      Next
+    </a>
+  </li>
+  {% endunless %}
+</ul>

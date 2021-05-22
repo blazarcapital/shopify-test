@@ -1,1 +1,25 @@
+function updateCart() {
+  $.ajax({
+    url: '/cart.js',
+    dataType: 'json',
+    method: 'get',
+    success: function (response) {
+      $('.miniCart_count').text(response.item_count)
+    },
+  })
+}
+
+
+$(document).on('submit', 'form[action="/cart/add"]', function (e) {
+  e.preventDefault()
+  const formData = $(this).serialize()
+
+  $.ajax({
+    url: '/cart/add.js',
+    data: formData,
+    dataType: 'json',
+    method: 'post',
+    success: updateCart,
+  })
+})
 
