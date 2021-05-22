@@ -1,9 +1,9 @@
 /* Imports */
-@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Yeseva+One&display=swap');
 
 /* Fonts */
-$font-header: Cardo, 'Helvetica Neue', Helvetica, sans-serif;
-$font-body: Lato, 'Helvetica Neue', Helvetica, sans-serif;
+$font-header: 'Yeseva One', 'Helvetica Neue', Helvetica, sans-serif;
+$font-body: Montserrat, 'Helvetica Neue', Helvetica, sans-serif;
 
 /* Colours */
 $colour-primary: #2e3b47;
@@ -126,12 +126,115 @@ picture {
 
 /* Collection hero */
 .collectionHero {
+<<<<<<< HEAD
 }
 
 /* Product List */
 .productList {
+=======
+  position: relative;
+
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $colour-white;
+    text-align: center;
+    font-size: 7rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 5rem;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 3rem;
+    }
+  }
+}
+
+/* Product List */
+.productsList {
+  max-width: 144rem;
+  margin: 3rem auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+>>>>>>> 97e696430570434cb8d3deccb4b462b266ea0dde
 }
 
 /* Product Card */
 .productCard {
+<<<<<<< HEAD
+=======
+  a {
+    position: relative;
+    display: block;
+
+    &:hover .productCard__atc {
+      display: block;
+    }
+
+    .productCard__atc {
+      display: none;
+      position: absolute;
+      z-index: 1;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      background-color: $colour-white;
+      border: none;
+      padding: 1rem;
+      cursor: pointer;
+
+      @media screen and (max-width: 768px) {
+        display: block;
+      }
+    }
+  }
+
+  .productCard__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .productCard__variants p {
+    margin: 0;
+  }
+}
+
+/* Pagination */
+.pagination {
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .pagination__text {
+    margin: 0 1.3rem;
+  }
+
+  .pagination__button {
+    border: none;
+    background-color: $colour-primary;
+    color: $colour-white;
+    cursor: pointer;
+    padding: 1rem 1.3rem;
+
+    &:disabled {
+      cursor: auto;
+      opacity: 0.7;
+    }
+  }
+>>>>>>> 97e696430570434cb8d3deccb4b462b266ea0dde
 }

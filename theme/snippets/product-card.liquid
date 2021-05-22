@@ -1,2 +1,28 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+
+{% assign title = product.title | split: ' - ' %}
+
+<div class="productCard">
+  <a href="{{ product.url | within: collection }}">
+    <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.featured_image.alt }}">
+
+    <form action="/cart/add" method="post">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+      <button type="submit" class="productCard__atc collection--atc">
+        {{ 'icon-shopping-cart.png' | asset_img_url: '20x' | img_tag }}
+      </button>
+    </form>
+
+  </a>
+
+  <div class="productCard__meta">
+    <h2>{{ title[0] }}</h2>
+    <p>{{ product.price | money }}</p>
+  </div>
+
+  {% if title[1] %}
+  <div class="productCard__variants">
+    <p>{{ title[1] }} &dash; {{ title[2] }}</p>
+  </div>
+  {% endif %}
+</div>
