@@ -1,2 +1,18 @@
 {% comment %} Product list {% endcomment %}
-<section class="productsList section"></section>
+<section class="products-list section">
+  <div class="container container--m">
+    {% paginate collection.products by 15 %}
+      <div class="products-list__items">
+        {% for product in collection.products %}
+          <div class="products-list__item">
+            {% render 'product-card', mod_product: product %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="products-list__pagination">
+        {{ paginate | default_pagination: next: 'Next', previous: 'Previous' }}
+      </div>
+    {% endpaginate %}
+  </div>
+</section>

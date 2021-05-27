@@ -1,2 +1,41 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+{% assign mod_product = mod_product | default: false %}
+{% assign image_placeholder = 'product-1' | placeholder_svg_tag %}
+{% assign _image = mod_product.featured_image | img_url: '580x' | default: image_placeholder %}
+{%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'large', scale: 2 -%}
+
+{% if mod_product %}
+  <div class="product-card" data-id="{{- mod_product.selected_or_first_available_variant.id -}}">
+    <div class="product-card__featured">
+      <a class="product-card__image">
+        <img src="{{- _image -}}" alt="{{- mod_product.featured_image.alt | default: mod_product.title -}}"> 
+      </a>
+
+      <button type="button" class="product-card__add js-add-to-cart">
+        <img src="{{- cart_icon -}}" alt="Add to cart">
+      </button>
+    </div>
+
+    <div class="product-card__content">
+      <div class="product-card__meta">
+        {% assign title_arr = mod_product.title | split: '-' %}
+
+        <h3 class="product-card__title">
+          {{ title_arr[0] }}
+        </h3>
+
+        {% if title_arr.size > 1 %}
+          {% for item in title_arr %}
+            {%- if forloop.first -%}{%- continue -%}{%- endif -%}
+
+            <span>{{ item }}</span>{% unless forloop.last %} - {% endunless %}
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="product-card__price">
+        {{ mod_product.price | money }}
+      </div>
+    </div>
+  </div>
+{% endif %}
