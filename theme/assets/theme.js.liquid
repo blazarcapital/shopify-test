@@ -1,1 +1,25 @@
+$('.js-add-to-cart').on('click', function() {
+  console.log('click')
 
+  var $product = $(this).closest('.product-card')
+  var id = $product.attr('data-id')
+
+  $.ajax({
+    url: '/cart/add.js',
+    method: 'POST',
+    dataType: 'json',
+    data: {
+      id: id,
+      quantity: 1
+    }
+  })
+    .done(function (data) {
+      var $miniCartCount = $('.mini-cart .mini-cart_count')
+      var cartCount = Number($miniCartCount.html())
+
+      $miniCartCount.html(cartCount + 1)
+    })
+    .fail(function (error) {
+      console.log(error)
+    })
+})

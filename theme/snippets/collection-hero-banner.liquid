@@ -1,2 +1,11 @@
 {% comment %} Collection hero banner {% endcomment %}
-<section class="collectionHero section"></section>
+<section class="collection-hero {% if collection.image != blank %} collection-hero--image {% endif %} section">
+  {% if collection.image != blank %}
+    <div class="collection-hero__image">
+      <img src="{{- collection.image | img_url: '2048x' -}}" alt="{{- collection.image.alt -}}">
+    </div>
+  {% endif %}
+
+  <h1 class="collection-hero__title">{{- collection.title -}}</h1>
+</section>
+
