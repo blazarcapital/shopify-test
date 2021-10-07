@@ -1,2 +1,58 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+
+{% assign collection_identifier = collection.title %}
+{% assign collection_size = collection_identifier | size | minus: 1 %}
+{% assign collection_identifier = collection_identifier | slice: 0, collection_size %}
+{% assign product_title = product.title %}
+{% assign product_variant = product.selected_or_first_available_variant %}
+{% assign product_title_size_color_array =  product_title | split: ' - ' %}
+{% assign size_identifier = 'mm,cm,m,kg,g' | split: ',' %}
+
+
+{% for item in product_title_size_color_array %}
+  {% if item contains collection_identifier or item contains 'Strap' %}
+    {% assign product_title_clean = item %}
+  {% elsif item contains 'mm' %}{% assign product_size = item %}
+      
+  {% else %}
+   {% assign product_color = item %}
+  {% endif %}
+  {% if product_size == '' %}
+   {% assign product_size = product_variant.option1 %}
+  {% endif %}
+  {% if product_color == '' %}
+   {% assign product_color = product_variant.option2 %}
+  {% endif %}
+{% endfor %}
+
+
+    <div class="productCard">
+        <div class="productCard__productAction">
+            <div class="productCard__productImage">
+                <img src="{{ product.featured_image | img_url = 'master' }}"> 
+            </div>
+            <div class="productCard__addToCart">
+                {%- assign current_variant = product.selected_or_first_available_variant -%}
+                {% form 'product', product, novalidate: 'novalidate' %} 
+
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                <input type="hidden" name="return_to" value="back" />
+                <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+                <button type="submit" name="add"               
+                        aria-label="{{ 'products.product.add_to_cart' | t }}"
+                        class="productCard__addToCart-button"
+                        data-add-to-cart>
+                </button>
+                {% endform %}
+            </div>
+        </div>
+    <div class="productCard__productInfo">
+        <div class="productCard__productInfo-block">
+        <h3 class="productCard__productTitle">{{ product_title_clean }}</h3>
+        <p class="productCard__productPrice">{{ product.price | money }}</p>
+        </div>
+        <p class="productCard__productSizeColor">{{ product_size }} - {{ product_color }}</p>
+        
+        
+    </div>
+</div>
