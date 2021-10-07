@@ -95,7 +95,7 @@ img, picture {
 }
 
 .miniCart_icon {
-  max-height: 17px;
+  max-height: 25px;
   height: 100%;
   width: auto;
 
@@ -105,7 +105,7 @@ img, picture {
 }
 
 .miniCart_count {
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   margin-left: 5px;
 
   @media (min-width: 768px) {
@@ -121,3 +121,100 @@ img, picture {
 
 /* Product Card */
 .productCard {}
+
+
+ .collectionHero__content {
+     background-image: url('{{ collection.image | img_url: 'master' }}');
+     background-size: cover;
+     background-position: center;
+     height: 250px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+      @media (min-width: 768px) {
+         height: 400px;
+        
+  }
+
+ }
+ .collectionHero__colectionTitle {
+    width: 60%;
+    text-align: center;
+    font-size: 4.5rem;
+    color: white;
+
+ }
+
+.productsList__productGrid {
+     margin: 5rem auto;
+     max-width: 1300px;
+     width: 90%;
+     
+      @media (min-width: 768px) {
+        grid-gap: 3rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        
+  }
+  }
+  .productsList__productItem {
+      margin: 2rem 0;
+
+  }
+  
+
+.productCard__addToCart {
+   height: 60px;
+   width: 60px;
+   position: absolute;
+   bottom: 10px;
+   right: 10px;
+   padding: 1rem;
+   background: white;
+   @media (min-width: 768px) {
+         display: none;
+        
+  }
+  
+}
+.productCard__productAction {
+
+    position: relative;
+}
+.productCard__addToCart-button {
+   background-image: url('{{ 'icon-shopping-cart.png' | asset_img_url: 'large' }}');
+   background-size: contain;
+   background-position: center;
+   background-repeat: no-repeat;
+   height: 40px;
+   width: 100%;
+   border: none;
+   background-color: white;
+   padding: 0;
+   cursor: pointer;
+   
+}
+.productCard__productInfo-block {
+   display: flex;
+   width: 100%;
+   margin: 0;
+   padding: 0;
+   align-items: center;
+   justify-content: space-between;
+}
+.productCard__productTitle {
+    font-weight: 700;
+}
+.productCard:hover .productCard__addToCart {
+    display: block;
+   
+}
+
+.productsList__pagination {
+  width: fit-content;
+  max-width: 1300px;
+  margin: 3rem auto;
+  font-size: 2rem;
+  font-weight: 700;
+}
+  
