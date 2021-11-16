@@ -1,2 +1,41 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+{% paginate collections[handle].products by 10 %}
+
+    <div class="productCard-wrapper">  
+
+        {% for product in collections[handle].products %}
+
+            <div class="productCard">
+                <img class="product-card-img" src="{{product.featured_image  | img_url: 'original'}}" alt="">
+                        <form class="product-form" action="/cart/add" data-productid="{{product.id}}"  method="post"> 
+                            <input type="hidden" name="id" data-productid="{{product.id}}" class="product-select" value="{{ product.variants[0].id }}"  />
+                            <input style="display:none" type="text" name="quantity" id="quantity" value="1" />
+                            <input type="hidden" name="return_to" value="back" />
+                            <input id="add-to-cart-button" type="submit" value="" class="add_to_cart" />
+                         </form>
+
+            {% assign title_arr = {{product.title}} | split: "- " %}
+
+                <div class="product-info">
+                    <span class="product_title">{{title_arr[0]}}</span>
+                    <span class="product_price">{{product.price |  money}}</span>
+                    <div class="product_meta">
+                        <span>{{title_arr[1]}} - </span>
+                        <span>{{title_arr[2]}}</span>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+
+    </div>       
+
+                
+{% comment %} nav for pagination  {% endcomment %}
+<div class="pagination"> 
+    {{ paginate | default_pagination: next: 'Older', previous: 'Newer' }}
+</div>
+{% endpaginate %}
+
+
+    
