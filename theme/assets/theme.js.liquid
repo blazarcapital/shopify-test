@@ -1,1 +1,40 @@
+let addToCartButtons = document.querySelectorAll('.productCard .addToCart--btn');
+let miniCartEl = document.querySelector('.miniCart .miniCart_count');
+
+if(addToCartButtons){
+    addToCartButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            let variantId = button.dataset.variantId;
+            addToCart(variantId);
+        })
+    })
+}
+
+let addToCart = (variantId) => {
+    console.log(`Adding ${variantId} to cart`);
+
+    const data = { 
+        id: variantId,
+        quantity: 1 
+    };
+
+    fetch('/cart/add.js', {
+        method: 'POST', // or 'PUT'
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    }).then(response => {
+        response.json()
+    })
+    .then(data => {
+        console.log(`Added ${variantId} to cart!`, data);
+        miniCartEl.textContent = parseInt(miniCartEl.textContent) + 1;
+    })
+    .catch((error) => {
+        console.log('Error: ', error);
+    });
+}
 

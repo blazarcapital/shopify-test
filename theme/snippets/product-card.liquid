@@ -1,2 +1,16 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+<div class="productCard">
+    {%- assign product_title = product.title | split: '-' -%}
+    <img src="{{ product.featured_image | img_url: '400x'}}"/>
+    <div class="productCard--item">
+        <h3>
+            <a href="{{ product.url }}">{{ product_title[0] }}</a>
+        </h3>
+        <div class="productCard--info">
+            <span>Color: <strong>{{ product_title[1] }}</strong></span>
+            <span>Size: <strong>{{ product_title[2] }}</strong></span>
+        </div>
+        <p class="productCard--price">{{ product.price | money }}</p>
+        <button class="addToCart--btn" data-variant-id="{{ product.selected_or_first_available_variant.id }}">Add to cart</button>
+    </div>
+</div>
