@@ -1,2 +1,16 @@
 {% comment %} Product list {% endcomment %}
-<section class="productsList section"></section>
+
+{%- paginate collection.products by 15 -%}
+  <section class="productsList section">
+    {%- for product in collection.products -%}
+      {% render 'product-card', product: product %}
+    {%- endfor -%}
+  </section>
+  {% if paginate.pages > 1 %}
+    <div class="productsList pagination"> 
+      {% for page in (1..paginate.pages) %}
+        <a {% if page == paginate.current_page %} class="active-page" {% endif %} href="?page={{ page }}">{{page}}</a>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endpaginate %}
