@@ -1,2 +1,18 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+<div class="product_wrapper">
+    <div class="product_image-wrapper">
+        <img class="product_image" src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.featured_image.alt }}">
+        <div class="add_to_cart_wrapper ad_to_cart hide" var_id="{{product.variants.first.id}}">
+            <img class="add_to_cart_btn" src="{{ 'icon-shopping-cart.png' | asset_url }}">
+        </div>
+    </div>
+    <div class="product_info">
+            <h3 class="product_title">{{ product.title }}</h3>
+            <span class="product_price">€{{ product.price | divided_by: 10 | money_without_currency }}</span>
+            {% assign title_string = product.title | split: " " %}
+            <p class="product_color">{{ title_string[2] }}</p>
+            
+        </div>
+</div>
+
+
