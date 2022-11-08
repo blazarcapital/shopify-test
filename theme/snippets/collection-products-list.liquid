@@ -1,2 +1,26 @@
 {% comment %} Product list {% endcomment %}
-<section class="productsList section"></section>
+<section class="productsList section">
+   {% paginate collection.products by 12 %}
+      <div class="productsList_main">
+         <div class="collection_grid">
+            {% for product in collection.products %}
+            {% if product.available %}
+               {% render 'product-card' with {
+                  product: product
+               } %}
+               {% endif %}
+            {% endfor %}
+         </div>
+      </div>
+
+      <div class="collection_pagination">
+         {% for part in paginate.parts %}
+         {% if part.is_link %}
+            <span class="page_link">{{ part.title | link_to: part.url }}</span>
+            {% else %}
+            <span class="current_page">{{ part.title }}</span>
+            {% endif %}
+         {% endfor %}
+      </div>
+   {% endpaginate %} 
+</section>

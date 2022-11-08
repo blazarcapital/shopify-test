@@ -1,1 +1,28 @@
+$(document).on('click','.ad_to_cart',function(){
+  var obj=$(this);
 
+ 
+  $.ajax({
+    type: 'POST',
+    url: '/cart/add.js',
+    data: {
+      quantity: 1,
+      id: $(this).attr("var_id")
+    },
+    dataType: 'json', 
+    success: function (data) {  
+          console.log('Item added to cart');
+    }
+  });
+  get_cartitems();
+})
+
+  function get_cartitems() {
+setTimeout(function(){
+		$.getJSON('/cart.js', function(cart){ 
+			var result_ic = cart.item_count + 1;
+      $('.miniCart_count').text( result_ic );
+			console.log("get item in cart ",result_ic);
+		});
+},30);
+}
