@@ -9,15 +9,19 @@
     <h3 class="productCard__title">{{ product.title }}
 
     </h3>
+    <div class="productCard__size">
+      {{product.variants[0].option1}}
+    </div>
+    <div class="productCard-color">
+      {{product.color}}
+    </div>
     <div class="productCard__price">
       {% if product.compare_at_price_max > product.price %}
         <span class="productCard__price--compare">{{ product.compare_at_price_max | money }}</span>
       {% endif %}
       <span class="productCard__price--current">{{ product.price | money }}</span>
     </div>
-    <div class="productCard__description">
-      {{ product.description }}
-    </div>
+    
     <div class="productCard__button">
       <a href="{{ product.url }}" class="button">View product</a>
     </div>

@@ -2,11 +2,8 @@
   Collection hero banner
 {% endcomment %}
 <section class="collectionHero section">
-  <div class="collection-title">
-    <h1>{{ collection.title }}</h1>
-
-  </div>
   <div class="collection-image">
     <img src="{{ collection.image | img_url: 'master' }}" alt="{{ collection.title | escape }}">
+    <h1 class="collection title">{{ collection.title }}</h1>
   </div>
 </section>

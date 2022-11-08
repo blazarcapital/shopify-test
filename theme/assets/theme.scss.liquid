@@ -15,7 +15,8 @@ $colour-white: #fff;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -32,11 +33,19 @@ body {
 }
 
 /* Typography */
-a, a:active, a:hover, a:visited {
+a,
+a:active,
+a:hover,
+a:visited {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $font-header;
   font-weight: normal;
   line-height: 1.25;
@@ -46,7 +55,19 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-img, picture {
+div > h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}
+
+img,
+picture {
   display: inline-block;
   vertical-align: middle;
   max-width: 100%;
@@ -83,7 +104,7 @@ img, picture {
   background-color: $colour-white;
   z-index: 1;
 
-  @media (min-width: 768px) {
+  @media(min-width: 768px) {
     padding: 20px;
   }
 }
@@ -99,7 +120,7 @@ img, picture {
   height: 100%;
   width: auto;
 
-  @media (min-width: 768px) {
+  @media(min-width: 768px) {
     max-height: 30px;
   }
 }
@@ -108,7 +129,7 @@ img, picture {
   font-size: 1.2rem;
   margin-left: 5px;
 
-  @media (min-width: 768px) {
+  @media(min-width: 768px) {
     font-size: 1.6rem;
   }
 }

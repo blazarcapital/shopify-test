@@ -14,16 +14,20 @@
     <div class="row">
       <div class="col-12">
         {%- paginate collection.products by 24 -%}
+
           <div class="productsList__grid">
-            <div class="product-collection">
-              {%- for product in collection.products -%}
-                {%- render 'product-card' with {product:product} -%}
-              {%- endfor -%}
-            </div>
+            {%- for product in collection.products -%}
+              {%- render 'product-card' with {product:product} -%}
+            {%- endfor -%}
           </div>
+
           {%- if paginate.pages > 1 -%}
-            {%- render 'pagination', paginate: paginate -%}
+            <nav role="navigation">
+              {%- render 'pagination', paginate: paginate -%}
+
+            </nav>
           {%- endif -%}
+
         {%- endpaginate -%}
       </div>
     </div>
