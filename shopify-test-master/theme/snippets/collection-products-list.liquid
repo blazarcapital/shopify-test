@@ -1,0 +1,18 @@
+{% comment %}
+  Product list
+{% endcomment %}
+
+<section class="productsList section">
+  <div class="productsList_wrapper">
+    <div class="productsList_grid">
+      {% paginate collection.products by 12 %}
+        {% for product in collection.products %}
+          {% if product.available %}
+            {% render "product-card" with product: product %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      {{- paginate | default_pagination }}
+    {% endpaginate %}
+  </div>
+</section>

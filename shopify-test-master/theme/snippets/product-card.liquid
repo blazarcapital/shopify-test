@@ -1,0 +1,17 @@
+{% comment %}
+  Product card
+{% endcomment %}
+
+<div class="productCard">
+  <div class="productCard_img_wrapper">
+    <img src="{{ product.featured_image | image_url: width:nil }}" alt="Product Image" class="product_image">
+    <img src="{{ 'icon-shopping-cart.png' | asset_img_url }}" alt="Add to Cart" class="add_to_cart" product_id="{{ product.id }}">
+  </div>
+  {% assign titleDetails = product.title | split: " - " %}
+  <div class="productCard_details">
+    <h2>{{ titleDetails[0] }}</h2>
+    <h2>{{ titleDetails[1] }}</h2>
+    <h2>{{ titleDetails[2] }}</h2>
+    <h3>{{ product.price | money}}</h3>
+  </div>
+</div>

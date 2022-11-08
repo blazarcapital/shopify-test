@@ -1,0 +1,33 @@
+function get_cartitems() {
+  setTimeout(function(){
+		$.getJSON('/cart.js', function(cart){ 
+			let total_items = cart.item_count + 1;
+      $('.miniCart_count').text(result_ic);
+		});
+	},50);
+}
+
+$(document).on("click", ".add_to_cart", function(){
+  let product_id = $(this).attr("product_id");
+  let data = {
+    'items': [{
+     'id': product_id,
+     'quantity': 1
+     }]
+   };
+   fetch(window.Shopify.routes.root + 'cart/add.js', {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json'
+     },
+     body: JSON.stringify(data)
+   })
+   .then(response => {
+     return response.json();
+   })
+   .catch((error) => {
+     console.error('Error:', error);
+   });
+  console.log(data);
+  get_cartitems();
+})
