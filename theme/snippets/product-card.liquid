@@ -1,2 +1,26 @@
-{% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+{% comment %}
+  Product card
+{% endcomment %}
+<div class="productCard">
+  <div class="productCard__image">
+    <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title | escape }}">
+  </div>
+  <div class="productCard__content">
+    <h3 class="productCard__title">{{ product.title }}
+
+    </h3>
+    <div class="productCard__price">
+      {% if product.compare_at_price_max > product.price %}
+        <span class="productCard__price--compare">{{ product.compare_at_price_max | money }}</span>
+      {% endif %}
+      <span class="productCard__price--current">{{ product.price | money }}</span>
+    </div>
+    <div class="productCard__description">
+      {{ product.description }}
+    </div>
+    <div class="productCard__button">
+      <a href="{{ product.url }}" class="button">View product</a>
+    </div>
+  </div>
+
+</div>
