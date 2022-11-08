@@ -1,2 +1,24 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+{% assign title_string =  product.title | split: "-"  %}
+
+<div class="productCard">
+    <div class="productCard__image-wrapper">
+        <img src="{{ product.featured_media | img_url : '800x' }}" class="productCard__image">
+        <div class="productCard__addBtn" data-variant="{{ product.first_available_variant.id }}">
+            <img src="{{ 'icon-shopping-cart.png' | asset_img_url: }}" />
+        </div>
+    </div>
+    <div class="productCard__info-wrapper">
+        <div class="productCard__title-wrapper">
+            <h3 class="productCard__title">
+                {{ title_string.first] }}
+            </h3>
+            <div class="productCard__option-wrapper">
+                {{ title_string[1] }} - {{ title_string[2] }}
+            </div>
+        </div>
+        <span class="productCard__price">
+            {{ product.price | money }}
+        </span>
+    </div>
+</div>
