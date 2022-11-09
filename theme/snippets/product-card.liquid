@@ -13,7 +13,7 @@
 
         {%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'small', scale: 1 -%}
         <button onclick="history.go(-1);" type="submit">
-          <i class="miniCart_icon" src="{{ cart_icon }}"></i>
+          <img class="miniCart_icon" src="{{ cart_icon }}"></img>
         </button>
 
       </form>
@@ -24,7 +24,7 @@
     </h3>
 
     <div class="productCard__price">
-      <span class="productCard__price--current">{{ product.price | money }}</span>
+      <span class="productCard__price--current">{{ product.price | money_without_trailing_zeros }}</span>
     </div>
 
     <div class="productCard__button"></div>

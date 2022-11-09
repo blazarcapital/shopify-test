@@ -14,8 +14,10 @@
           {%- for product in collection.products -%}
             <div class="productCard-wrapper">
               {%- render 'product-card' with {product:product} -%}
+              
             </div>
           {%- endfor -%}
+
         </div>
 
         {%- if paginate.pages > 1 -%}
