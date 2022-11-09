@@ -1,2 +1,35 @@
-{% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+{% comment %}
+  Product card
+{% endcomment %}
+<script src="{{'theme.js.liquid'| asset_url}}"></script>
+<div class="productCard">
+  <div class="productCard__image">
+    <a href="{{ product.url }}" class="button">
+      <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title | escape }}">
+    </a>
+    <div class="productCard__miniCart">
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}"/>
+        <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
+
+        {%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'small', scale: 1 -%}
+        <button onclick="history.go(-1);" type="submit">
+          <img class="miniCart_icon" src="{{ cart_icon }}"></img>
+        </button>
+
+      </form>
+    </div>
+  </div>
+  <div class="productCard__content">
+    <h3 class="productCard__title">{{ product.title }}
+    </h3>
+
+    <div class="productCard__price">
+      <span class="productCard__price--current">{{ product.price | money_without_trailing_zeros }}</span>
+    </div>
+
+    <div class="productCard__button"></div>
+
+  </div>
+
+</div>
