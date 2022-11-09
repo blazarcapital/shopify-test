@@ -61,9 +61,11 @@ div > h1 {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100px;
-  height: 100px;
+  width: 270px;
+  height: 35px;
   margin: auto;
+  font-size: 4rem;
+  color: $colour-white;
 }
 
 img,
@@ -138,7 +140,74 @@ picture {
 .collectionHero {}
 
 /* Product List */
-.productList {}
+.productList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  width: 100%;
+  margin: 50px auto;
+  gap: 30px;
+  padding: 0 2rem;
+
+  @media(max-width: 425px) {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0;
+  }
+  @media(min-width: 426px) and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 1rem;
+  }
+}
+
+.productCard-wrapper {}
 
 /* Product Card */
-.productCard {}
+.productCard {
+  justify-self: center;
+  width: 100%;
+}
+
+button.buttonCart {
+  height: inherit;
+  width: inherit;
+}
+
+.productCard__image {
+  position: relative;
+}
+
+.productCard__miniCart {
+  position: absolute;
+  display: none;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-left: 1px solid $colour-grey;
+  border-bottom: 1px solid $colour-grey;
+  background-color: $colour-white;
+  z-index: 5;
+    @media(max-width: 425px) {
+      display:block;
+    }
+    &::hover {
+      display:block;
+    }
+}
+
+.productCard__content {
+  display: flex;
+  justify-content: space-between;
+}
+.productCard__title {
+  color: $colour-primary;
+  @media(max-width: 425px) {
+    font-size: 2.6rem;
+  }
+}
+
+.productCard__price {
+  @media(max-width: 425px) {
+    font-size: 2.6rem;
+  }
+}

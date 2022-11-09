@@ -3,28 +3,31 @@
 {% endcomment %}
 <div class="productCard">
   <div class="productCard__image">
-    <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title | escape }}">
+    <a href="{{ product.url }}" class="button">
+      <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title | escape }}">
+    </a>
+    <div class="productCard__miniCart">
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}"/>
+        <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
+        
+        {%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'small', scale: 1 -%}
+        <input display="none" type="submit" class="buttonCart">
+          <i class="miniCart_icon" src="{{ cart_icon }}"></i>
+        </input>
+      </form>
+    </div>
   </div>
   <div class="productCard__content">
     <h3 class="productCard__title">{{ product.title }}
-
     </h3>
-    <div class="productCard__size">
-      {{product.variants[0].option1}}
-    </div>
-    <div class="productCard-color">
-      {{product.color}}
-    </div>
+
     <div class="productCard__price">
-      {% if product.compare_at_price_max > product.price %}
-        <span class="productCard__price--compare">{{ product.compare_at_price_max | money }}</span>
-      {% endif %}
       <span class="productCard__price--current">{{ product.price | money }}</span>
     </div>
-    
-    <div class="productCard__button">
-      <a href="{{ product.url }}" class="button">View product</a>
-    </div>
+
+    <div class="productCard__button"></div>
+
   </div>
 
 </div>

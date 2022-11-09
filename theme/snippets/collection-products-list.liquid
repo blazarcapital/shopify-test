@@ -1,35 +1,32 @@
 {% comment %}
   Product list
 {% endcomment %}
-<section class="productsList section">
+<section class="productList-section">
   <div class="container">
+
+    <div class="productList__header"></div>
+
     <div class="row">
-      <div class="col-12">
-        <div class="productsList__header">
-          <h2 class="productsList__title">List</h2>
+
+      {%- paginate collection.products by 24 -%}
+
+        <div class="productList">
+          {%- for product in collection.products -%}
+            <div class="productCard-wrapper">
+              {%- render 'product-card' with {product:product} -%}
+            </div>
+          {%- endfor -%}
         </div>
 
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        {%- paginate collection.products by 24 -%}
+        {%- if paginate.pages > 1 -%}
+          <nav role="navigation">
+            {%- render 'pagination', paginate: paginate -%}
 
-          <div class="productsList__grid">
-            {%- for product in collection.products -%}
-              {%- render 'product-card' with {product:product} -%}
-            {%- endfor -%}
-          </div>
+          </nav>
+        {%- endif -%}
 
-          {%- if paginate.pages > 1 -%}
-            <nav role="navigation">
-              {%- render 'pagination', paginate: paginate -%}
+      {%- endpaginate -%}
 
-            </nav>
-          {%- endif -%}
-
-        {%- endpaginate -%}
-      </div>
     </div>
   </div>
 
