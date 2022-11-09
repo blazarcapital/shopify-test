@@ -9,6 +9,7 @@ $font-body: Lato, 'Helvetica Neue', Helvetica, sans-serif;
 $colour-primary: #2e3b47;
 $colour-grey: #ccc;
 $colour-white: #fff;
+$colour-black: #000;
 
 /* General */
 * {
@@ -55,7 +56,8 @@ img, picture {
 }
 
 /* Containers */
-.main {}
+.main {
+}
 
 .container {
   position: relative;
@@ -114,10 +116,139 @@ img, picture {
 }
 
 /* Collection hero */
-.collectionHero {}
+.collectionTitle__centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 6rem;
+  font-weight: 300;
+  color:white;
+  transform: translate(-50%, -50%);
+}
+
+.collection__container{
+  position: relative;
+  text-align: center;
+}
+
+.collection-image {
+  object-fit: cover;
+
+
+  @media (min-width: 768px) {  
+    height: 350px;
+    width: 100%;
+  }
+}
 
 /* Product List */
-.productList {}
+
+.list__container{
+  margin-top: 3rem;
+  margin-left: 5%;
+}
+.grid__container {
+  display: grid;
+  grid-template-columns: auto;
+  @media (min-width: 768px) {  
+  grid-template-columns: auto auto auto;  
+  }
+}
+.grid__item {
+  padding: 10px;
+  text-align: center;
+  max-width: 500px;
+  max-height: 500px;
+
+}
+
+.pagination__container{
+  margin: 0 auto;
+  text-align: center;
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination span {
+  color: $colour-black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
 
 /* Product Card */
-.productCard {}
+.productCard__title{
+float:left;
+font-size: 1.5rem;
+}
+
+.producCard__size_color{
+float: left;
+}
+.productCard__grid{
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.productCard__grid_item {
+  text-align: left;
+}
+.productCard__addToCart{
+  position: absolute;
+  top: 90%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+}
+
+.btn span.icon {
+  background: url("icon-shopping-cart.png") no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding: 1.2rem;
+}
+.productCard__button{
+  padding: 1.2rem;
+  border: 1px $colour-white;
+  border-radius: 2px;
+  background: $colour-white;
+}
+
+.productCard__button:hover{
+  cursor:pointer;
+}
+
+.productCard{
+  position: relative;
+  text-align: center;
+  color: $colour-white;
+  max-width: 450px;
+  max-height: auto;
+}
+
+.productCard_content{
+  text-align: center;
+}
+.productCard__image{
+  position: relative;
+  text-align: center;
+
+  margin:auto;
+  max-width: 500px;
+  max-height: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  }
+
+.productCard__image a:hover{
+  cursor:default;
+}
+
+.productCard__price{
+    font-size: 1.5rem;
+    color: $colour-black;
+    font-weight: 700;
+    margin: 0;
+    float:right
+  }
+

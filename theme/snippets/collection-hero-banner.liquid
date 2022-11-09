@@ -1,2 +1,15 @@
-{% comment %} Collection hero banner {% endcomment %}
-<section class="collectionHero section"></section>
+{% comment %}
+  Collection hero banner
+{% endcomment %}
+<section class="collectionHero section">
+  <div class="collectionHero__inner">
+    <div class="collectionHero__content">
+      <div class="collectionHero__image collection__container">
+        <h1 class="collectionHero__title collectionTitle__centered">{{collection.title}}</h1>
+        <img class="collection-image" src="{{ 'collection-hero.jpg' | asset_url }}" alt="Collection hero image">
+      </div>
+    </div>
+  </div>
+
+
+</section>
