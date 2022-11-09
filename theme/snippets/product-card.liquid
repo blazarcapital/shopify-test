@@ -10,11 +10,12 @@
       <form method="post" action="/cart/add">
         <input type="hidden" name="id" value="{{ product.variants.first.id }}"/>
         <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
-        
+
         {%- assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'small', scale: 1 -%}
-        <input display="none" type="submit" class="buttonCart">
+        <button onclick="history.go(-1);" type="submit">
           <i class="miniCart_icon" src="{{ cart_icon }}"></i>
-        </input>
+        </button>
+
       </form>
     </div>
   </div>

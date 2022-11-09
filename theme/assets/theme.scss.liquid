@@ -188,11 +188,20 @@ button.buttonCart {
   background-color: $colour-white;
   z-index: 5;
   @media(max-width: 425px) {
-    display: block;
+    display: flex;
   }
-  &::hover {
-    display: block;
-  }
+
+}
+.productCard__miniCart:hover {
+  display: flex;
+}
+button[type=submit] {
+  flex: 1;
+}
+
+.productCard__miniCart > form {
+  flex: 1;
+  display: flex;
 }
 
 .productCard__content {
