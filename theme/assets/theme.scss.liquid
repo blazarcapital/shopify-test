@@ -200,7 +200,6 @@ button.buttonCart {
   display: flex;
 }
 
-
 button[type=submit] {
   flex: 1;
 }
@@ -224,5 +223,26 @@ button[type=submit] {
 .productCard__price {
   @media(max-width: 425px) {
     font-size: 2.6rem;
+  }
+}
+
+/* Pagination */
+
+.pagination {
+  text-align: center;
+  text-decoration: none;
+  list-style-type: none;
+
+}
+.pagination_container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.pagination_numbers {
+  display: flex;
+  justify-content: center;
+  .pagination_number {
+    margin: 0 15px;
   }
 }
