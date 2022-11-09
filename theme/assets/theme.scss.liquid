@@ -191,10 +191,16 @@ button.buttonCart {
     display: flex;
   }
 
+  @media(min-width: 426px) and (max-width: 768px) {
+    display: flex;
+  }
 }
-.productCard__miniCart:hover {
+
+.productCard-wrapper:hover .productCard__miniCart {
   display: flex;
 }
+
+
 button[type=submit] {
   flex: 1;
 }
