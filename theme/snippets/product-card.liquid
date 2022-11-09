@@ -1,2 +1,49 @@
-{% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+{% comment %}
+  Product card
+{% endcomment %}
+{%- assign  productTitleArray= product.title| split: "-"-%}
+{%-assign productTitleName = productTitleArray[0]-%}
+{%if productTitleArray.size== 3%}
+  {%- assign  productSize = productTitleArray[2]-%}
+  {%- assign  productColor = productTitleArray[1]-%}
+{%endif%}
+{%-if productTitleArray.size ==1 -%}
+  {%-assign productSize = 'No size'-%}
+  {%- assign  productColor = 'No color'-%}
+{%endif %}
+
+<div class="productCard">
+  <div class="productCard__content">
+    <div class="productCard__image">
+      <a href="{{ product.url | within: collection }}">
+        <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title | escape }}">
+      </a>
+      <div class="productCard__addToCart">
+        <form class="cart-form">
+          <input type="hidden" name="id" value="{{product.variants[0].id}}">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" class="btn productCard__button">
+            <span class="icon"/>
+          </button>
+        </form>
+
+      </div>
+    </div>
+    <div class="productCard__grid">
+      <div class="productCard__title_price productCard__grid_item">
+        <span class="productCard__title">
+          <a href="{{ product.url | within: collection }}">{{ productTitleName }}</a>
+        </span>
+        <span class="productCard__price">
+          {{ product.price | money }}
+        </span>
+      </div>
+      <div class="producCard__size_color productCard__grid_item">
+        <span class="productCard__size" style="color:black">
+          {{ productSize }} &#8212; {{ productColor }}
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>

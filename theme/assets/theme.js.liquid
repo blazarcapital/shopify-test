@@ -1,1 +1,47 @@
+function handlesubmit(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const formProps = Object.fromEntries(formData);
+  const data = {
+    items: [
+      {
+        quantity: + formProps.quantity,
+        id: + formProps.id
+      }
+    ]
+  }
+  postCartData(data);;
 
+}
+
+const postCartData = (data) => {
+  fetch(window.Shopify.routes.root + 'cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then(async response => {
+    const res = await response.json();
+    getCartCount();
+    return res;
+  }).catch(error => {
+    console.error('POST Cart Error:', error);
+  });
+}
+
+const getCartCount = () => {
+  fetch(window.Shopify.routes.root + 'cart.js', {method: 'GET'}).then(async response => {
+    const res = await response.json();
+    const cartCount = document.querySelector('.miniCart_count');
+    cartCount.innerHTML = res.item_count;
+    return res
+  }).catch(error => {
+    console.error('GET Cart Error:', error);
+  });
+}
+
+let formElements = document.getElementsByClassName('cart-form');
+for (let i = 0; i < formElements.length; i++) {
+  formElements[i].addEventListener('submit', handlesubmit);
+}

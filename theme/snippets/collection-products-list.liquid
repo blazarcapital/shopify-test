@@ -1,2 +1,21 @@
-{% comment %} Product list {% endcomment %}
-<section class="productsList section"></section>
+{% comment %}
+  Product list
+{% endcomment %}
+<section class="productsList section">
+  <div class="list__container">
+    <div class="grid__container">
+      {%- paginate collection.products by 12%}
+        {% for product in collection.products %}
+          <div class="grid__item">
+            {% include 'product-card' %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="pagination__container">
+        <div class="pagination">
+          {{ paginate | default_pagination: next: 'Next', previous: 'Previous' }}
+        </div>
+      </div>
+    {%- endpaginate -%}
+  </div>
+</section>
