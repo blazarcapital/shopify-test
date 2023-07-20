@@ -1,1 +1,7 @@
+ function addToCart() {
+    let cartCountElement = document.getElementById("cartCount");
+    let cartCount = parseInt(cartCountElement.innerText);
 
+    cartCount++;
+    cartCountElement.innerText = cartCount;
+  }
