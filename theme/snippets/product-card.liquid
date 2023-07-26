@@ -1,2 +1,30 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+<div class="productCard">
+  {% assign titleDetails = product.title | split: " - " %}
+  {% assign productName = titleDetails[0] | strip %}
+  {% assign productColor = titleDetails[1] | strip %}
+  {% assign productSize = titleDetails[2] | strip %}
+
+  <div class="productCard_img_wrapper">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | image_url: width:nil }}" alt="{{ productName }}" class="product_image">
+    {% else %}
+      <img src="{{ 'placeholder-image.png' | asset_url }}" alt="Placeholder Image" class="product_image">
+    {% endif %}
+
+    <a href="#" class="add_to_cart" product_id="{{ product.id }}" onclick="addToCart()">
+      <img src="{{ 'icon-shopping-cart.png' | asset_img_url }}" alt="Add to Cart" class="cart_icon">
+    </a>
+  </div>
+
+  <div class="product_details">
+    <div class="title-price-container">
+      <h1>{{ product.title }}</h1>
+      <p class="price">Price: {{ product.price | money }}</p>
+    </div>
+    <p>Strap: {{ productColor }}</p>
+    <p>Size - Color: {{ product.variants.first.title }}</p>
+  </div>
+
+</div>
+
