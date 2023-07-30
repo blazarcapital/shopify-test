@@ -1,2 +1,45 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+<div class="productCard">
+  <div class="productImage">
+    <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title | escape }}">
+    <div class="miniCartProductCard">
+      <img
+        class="miniCart_icon moveOnHover"
+        src="{{ 'icon-shopping-cart.png' | asset_url }}"
+        alt="Add to cart"
+        data-variant-id="{{ product.variants.first.id }}">
+    </div>
+  </div>
+
+  <div class="productInfo">
+    {% assign title_parts = product.title | split: " - " %}
+
+    <div class="titleAndPrice">
+      <h2 class="productTitle">{{ title_parts[0] }}</h2>
+      <p class="productPrice">{{ product.price | money }}</p>
+    </div>
+
+    <!-- product description -->
+    {% assign product_has_size = false %}
+    {% assign product_has_color = false %}
+
+    <!-- product options -->
+    {% for option in product.options_with_values %}
+      {% if option.name == 'Size' %}
+        <p>Size: {{ option.values | join: ', ' }}</p>
+        {% assign product_has_size = true %}
+      {% elsif option.name == 'Color' %}
+        <p>Color: {{ option.values | join: ', ' }}</p>
+        {% assign product_has_color = true %}
+      {% endif %}
+    {% endfor %}
+
+    <!-- product size and color -->
+    {% if title_parts.size > 1 and product_has_size == false %}
+      <p>Size: {{ title_parts[1] }}</p>
+    {% endif %}
+    {% if title_parts.size > 2 and product_has_color == false %}
+      <p>Color: {{ title_parts[2] }}</p>
+    {% endif %}
+  </div>
+</div>
