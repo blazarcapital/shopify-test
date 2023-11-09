@@ -32,6 +32,7 @@ Hero banner:
 Product list:
 - Iterate over the products in the collection.
  - Use `product-card` snippet to render product and prevent repetitive code.
+- On desktop only, there should be an option to toggle between showing 3 products on a row (default) or 2 products
 - File located in `theme/snippets/collection-product-list.liquid`
 
 
@@ -52,7 +53,6 @@ Add to cart button:
 Mini cart:
 - Should always show the current number of products in the cart.
 - File located in `theme/snippets/mini-cart.liquid`
-
 
 Stylesheets
 - Located in `theme/assets/theme.scss.liquid`
