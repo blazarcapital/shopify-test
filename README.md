@@ -1,7 +1,7 @@
 Shopify test
 ============
 
-This is the job test if you wish to be a front-end developer at Mercive
+This is the job test if you wish to be a front-end developer at Mercive. We strive to always deliver pixel-perfect design. What we are looking for are passionate developers, who can take the designed wireframe from idea to result.
 
 
 Contents
@@ -13,6 +13,7 @@ When you have completed this test you will have demonstrated skills/knowledge in
 - css
 - javascript
 - liquid
+- and most importantly: being able to understand a number of requirements that all add up to a seamless customer experience.
 
 
 Requirements
