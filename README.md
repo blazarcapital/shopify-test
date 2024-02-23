@@ -32,7 +32,7 @@ Hero banner:
 Product list:
 - Iterate over the products in the collection.
  - Use `product-card` snippet to render product and prevent repetitive code.
-- On desktop only, there should be an option to toggle between showing 3 products on a row (default) or 2 products
+- On desktop only, there should be an option to toggle between showing 3 products on a row (default) or 2 products (If SVG's not available, write "3" and "2" instead.)
 - File located in `theme/snippets/collection-product-list.liquid`
 
 
@@ -42,6 +42,8 @@ Product card:
   - Find a smart way to show them display them separately.
 - The `Product price`.
 - The 'Add to cart' button should only show on hover for desktop and always be visible for mobile.
+- When hovering the product card on mobile, the image and 'Add to cart' button should have a smooth transition effect - Be creative, but keep it simple.
+- On load the size of the product images should be square (1:1), even before they load to avoid the the layout shifting.
 - File located in `theme/snippets/product-card.liquid`
 
 
@@ -54,19 +56,18 @@ Mini cart:
 - Should always show the current number of products in the cart.
 - File located in `theme/snippets/mini-cart.liquid`
 
+Track recently viewed products
+- Keep track of viewed products using a localstorage or a cookie based on when a product card enters the viewport
+
+Pagination:
+- You should be able to navigate through the products. Make sure you have at least 10 products.
+- Note: Shopify allows a maximum of 50 products per page.
+
 Stylesheets
 - Located in `theme/assets/theme.scss.liquid`
 
 Scripts:
 - Located in `theme/assets/theme.js.liquid`
-
-
-Bonus Requirement
---------
-Pagination:
-- You should be able to navigate through the products. Make sure you have at least 10 products.
-- Note: Shopify allows a maximum of 50 products per page.
-
 
 Instructions
 ------------
@@ -93,7 +94,7 @@ Instructions
 ------------
 To complete this test.
 1. Fork this repository
-2. Create a website based on the supplied desig files in the `design` directory (All images and icons are already in theme or available from Shopify)
+2. Create a website based on the supplied design files in the `design` directory (All images and icons are already in theme or available from Shopify)
 3. Create a pull request to this repository
 
 
