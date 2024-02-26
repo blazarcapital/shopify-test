@@ -1,0 +1,55 @@
+{% comment %} Product card {% endcomment %}
+{% assign button_text_add_to_cart = settings.button_add_to_cart %}
+
+<section class="section plp_products">
+  <div class="container">
+    <div class="productList">
+      {% for product in collection.products %}
+        {% assign title_parts = product.title | split: ' - ' %}
+        {% assign size_index = title_parts.size | minus: 1 %}
+        {% assign size = title_parts[size_index] %}
+        {% assign color_and_material = title_parts | slice: 0, size_index | join: ' - ' %}
+        {% assign color_parts = color_and_material | split: ' - ' %}
+        {% assign product_title = color_parts[0] %}
+        {% assign color = title_parts[1] %}
+        
+        <div class="productCard">
+        <a href="{{product.url}}">
+          <img src="{{ product.featured_image | img_url: '2048x2048' }}" alt="{{ product.featured_image.alt }}" />
+           
+        </a>
+
+        {% if request.page_type == 'collection' %}
+    {% if product.has_only_default_variant %}
+                <form method="post" action="/cart/add">
+                    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                    <button type="submit" class="addtoocart">
+                        <img id="addToCartButton" src="{{ 'icon-shopping-cart.png' | asset_img_url: 'small' }}" alt="Add to Cart" />
+                    </button>
+                </form>
+            {% endif %}   
+        {% endif %}
+     
+          
+          
+         <a href="{{product.url}}"> 
+          <div class="product_info">
+            <p class="product_title">{{ product_title }}</p>
+            <p class="prodcut_price">{{ product.price | money_with_currency }} </p>
+          </div>
+         </a>
+
+            <p class="product_color">{{ color }}</p>
+            -
+            <p class="product_size">{{ size }}</p> 
+        </div>
+      {% endfor %}
+    </div>
+  </div> 
+</section>
+
+
+
+
+
+ 

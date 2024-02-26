@@ -1,0 +1,75 @@
+// Opdel produkt titel
+const toggleThreeRowsButton = document.getElementById('toggleThreeRowsButton');
+const toggleTwoRowsButton = document.getElementById('toggleTwoRowsButton');
+const productCards = document.querySelectorAll('.productCard');
+
+toggleThreeRowsButton.addEventListener('click', function() {
+    productCards.forEach(card => {
+        card.classList.remove('products_two_per_row');
+    });
+    toggleThreeRowsButton.classList.add('active');
+    toggleTwoRowsButton.classList.remove('active');
+});
+
+toggleTwoRowsButton.addEventListener('click', function() {
+    productCards.forEach(card => {
+        card.classList.add('products_two_per_row');
+    });
+    toggleTwoRowsButton.classList.add('active');
+    toggleThreeRowsButton.classList.remove('active');
+});
+
+
+// Scroll effekt på mobil 
+    function checkVisibility() {
+        var productCards = document.querySelectorAll('.productCard');
+        var windowHeight = window.innerHeight;
+
+        productCards.forEach(function(card) {
+            var cardTop = card.getBoundingClientRect().top;
+
+
+            if (cardTop < windowHeight) {
+                card.classList.add('visible'); 
+            } else {
+                card.classList.remove('visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkVisibility);
+    window.addEventListener('DOMContentLoaded', checkVisibility);
+
+
+$(document).ready(function() {
+    $('.addtoocart').on('click', function(event) {
+        event.preventDefault(); 
+
+        var form = $(this).closest('form'); 
+        var formData = form.serialize(); 
+
+        var variantId = form.find('input[name="id"]').val(); 
+
+        $.ajax({
+            type: 'POST',
+            url: form.attr('action'), 
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                var cartCount = response.item_count; 
+                updateMiniCart(cartCount); 
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                alert('Der opstod en fejl: ' + error);
+            }
+        });
+    });
+});
+
+
+function updateMiniCart(cartCount) {
+    $('.miniCart_count').text(cartCount);
+}
+
+
