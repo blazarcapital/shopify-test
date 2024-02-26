@@ -1,2 +1,34 @@
-{% comment %} Product list {% endcomment %}
-<section class="productsList section"></section>
+{% paginate collection.products by 10 %}
+
+  <div class="productContainer">
+    <section class="productList section">
+      {% for product in collection.products %}
+        {% include 'product-card', product: product %}
+      {% endfor %}
+    </section>
+  </div>
+
+  <div class="paginationContainer">
+    {% if paginate.previous %}
+      <a href="{{ paginate.previous.url }}" class="paginationItem">Previous</a>
+    {% endif %}
+
+    {% for part in paginate.parts %}
+      {% if part.is_link %}
+        {% if part.title == paginate.current_page %}
+          <a href="{{ part.url }}" class="paginationItem">{{ part.title }}</a>
+        {% else %}
+          <a href="{{ part.url }}" class="paginationItem">{{ part.title }}</a>
+        {% endif %}
+      {% else %}
+        <span>{{ part.title }}</span>
+      {% endif %}
+    {% endfor %}
+
+    {% if paginate.next %}
+      <a href="{{ paginate.next.url }}" class="paginationItem">Next</a>
+    {% endif %}
+  </div>
+
+
+{% endpaginate %}

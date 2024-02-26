@@ -1,1 +1,43 @@
+// Add to cart and cart count funtionality for product page
+const addToCartImages = document.querySelectorAll('.miniCart_icon');
 
+addToCartImages.forEach(image => {
+  image.addEventListener('click', async event => {
+    const variantId = event.target.getAttribute('data-variant-id');
+    console.log('Adding product to cart', variantId);
+    await addProductToCart(variantId);
+    updateCartCount();
+  });
+});
+
+async function addProductToCart(variantId) {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id: variantId,
+      quantity: 1,
+    }),
+  };
+
+  try {
+    const response = await fetch(window.Shopify.routes.root + 'cart/add.js', options);
+    const data = await response.json();
+    console.log('Product added to cart', data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+async function updateCartCount() {
+  try {
+    const response = await fetch(window.Shopify.routes.root + 'cart.js');
+    const data = await response.json();
+    const cartCountElement = document.querySelector('.miniCart_count');
+    cartCountElement.textContent = data.item_count;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
