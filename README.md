@@ -1,7 +1,7 @@
 Shopify test
 ============
 
-This is the job test if you wish to be a front-end developer at Mercive. We strive to always deliver pixel-perfect design. What we are looking for are passionate developers, who can take the designed wireframe from idea to result.
+This is the job test if you wish to be a front-end developer. We strive to always deliver pixel-perfect design. What we are looking for are passionate developers, who can take the designed wireframe from idea to result.
 
 
 Contents
@@ -25,6 +25,7 @@ When building the different elements make sure to apply responsivness, so the pa
 
 
 Hero banner:
+- Show `Breadcrumbs`
 - Show `Collection title`
 - Show `Collection image`
 - File located in `theme/snippets/collection-collection-hero.liquid`
@@ -33,36 +34,25 @@ Hero banner:
 Product list:
 - Iterate over the products in the collection.
  - Use `product-card` snippet to render product and prevent repetitive code.
-- On desktop only, there should be an option to toggle between showing 3 products on a row (default) or 2 products (If SVG's not available, write "3" and "2" instead.)
 - File located in `theme/snippets/collection-product-list.liquid`
 
 
 Product card:
 - Show `Product title`
-- Show `Product size` and `Product color`. Only included in the product title.
+- Show `Product size`. Only included in the product title.
   - Find a smart way to show them display them separately.
 - The `Product price`.
+- The `Product description`.
 - The 'Add to cart' button should only show on hover for desktop and always be visible for mobile.
 - When hovering the product card on mobile, the image and 'Add to cart' button should have a smooth transition effect - Be creative, but keep it simple.
-- On load the size of the product images should be square (1:1), even before they load to avoid the the layout shifting.
+- On load the size of the product images should be portait format (3:4), even before they load to avoid the the layout shifting.
 - File located in `theme/snippets/product-card.liquid`
 
 
 Add to cart button:
 - Use a click event to add the product to the cart. 
   - A product id and quantity is required when adding an item to the cart.
-
-
-Mini cart:
-- Should always show the current number of products in the cart.
-- File located in `theme/snippets/mini-cart.liquid`
-
-Track recently viewed products
-- Keep track of viewed products using a localstorage or a cookie based on when a product card enters the viewport
-
-Pagination:
-- You should be able to navigate through the products. Make sure you have at least 10 products.
-- Note: Shopify allows a maximum of 50 products per page.
+  - Show an alert when successful
 
 Stylesheets
 - Located in `theme/assets/theme.scss.liquid`
@@ -74,7 +64,7 @@ Instructions
 ------------
 To complete this test.
 1. Fork this repository
-2. Create a website based on the supplied PSD-file (it is not required to use the images from the PSD-file)
+2. Create a website based on the Figma file
 3. Create a pull request to this repository
 
 Note: Both products and collection have already been created in Shopify and available through Liquid. So there's no need to upload any assets.
