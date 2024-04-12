@@ -36,6 +36,10 @@ Product list:
  - Use `product-card` snippet to render product and prevent repetitive code.
 - File located in `theme/snippets/collection-product-list.liquid`
 
+Product list breaker:
+- A metaobject called "Breaker" is created in the Shopify backend.
+- One entry is created already with a property called "Image"
+- Use this information to display the breaker in the right position of the grid on both desktop and mobile
 
 Product card:
 - Show `Product title`
