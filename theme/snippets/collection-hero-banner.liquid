@@ -1,2 +1,17 @@
 {% comment %} Collection hero banner {% endcomment %}
-<section class="collectionHero section"></section>
+<section class="collectionHero section">
+  <div class="banner_image_main">
+    <img src="{{ 'banner.jpg' | asset_url }}">
+  </div>
+  <div class="banner_content">
+    <div class="banner_content_inner page-width">
+      <div class="banner_breadcrumbs">
+        {% render 'breadcrumbs' %}
+      </div>
+      <div class="banner_title">
+         <h1 class="h4">{{ collection.title }}</h2>
+      </div>
+    </div>
+     
+  </div>
+</section>

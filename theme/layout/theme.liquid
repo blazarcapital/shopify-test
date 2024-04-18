@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{- shop.locale -}}">
 <head>
@@ -14,9 +15,15 @@
   {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
 
   {{ content_for_header }}
+
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous">
+</script>
 </head>
 <body>
-
+ 
   {%- include 'mini-cart' -%}
 
   <main class="main" role="main">{{ content_for_layout }}</main>

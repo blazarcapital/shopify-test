@@ -1,2 +1,29 @@
 {% comment %} Product card {% endcomment %}
-<div class="productCard"></div>
+<div class="productCard">
+<div class="product_card_media port">
+  <img class="{%- if card_product.media[1] != null -%} image_first {% endif %} product_image" src="{{ card_product.featured_image | img_url: 'master' }}">
+  
+  {%- if card_product.media[1] != null -%}
+  <img class="product_image image_second" src="{{ card_product.media[1] | img_url: "master" }}">
+  {%- endif -%}
+
+<div class="portfolioDisc">{% render 'add-to-cart',card_product: card_product %}</div>
+    
+</div>
+<div class="product_info">
+  <div class="card_product_title">{{ card_product.title }}</div>
+  <div class="card_product_price">{{ card_product.price | money }}</div>
+</div>
+<div class="mobile_atc">
+{% render 'add-to-cart',card_product: card_product %}
+</div>
+<div class="card_description">
+  {{ card_product.description }}
+</div>
+</div>
+{% comment %}
+<img src="{{ card_product.metafields.breaker.image | img_url: "master" }}" alt="Breaker Image">
+{% endcomment %}
+
+
+

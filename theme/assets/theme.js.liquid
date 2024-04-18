@@ -1,1 +1,60 @@
 
+ function hide(){
+ //  debugger;
+}
+ 
+  function abc()
+  {
+//    debugger;
+//     var ab = '<div class="popup-bg"> <img class="popup-img" src="'+ data.image + '" /> <h5 class="popup-heading">' + data.product_title + ' <br><br> Color : '  + data.variant_options[0] +' <br><br> Size : ' + data.variant_options[1] +'   <br><br><br>Price :' + data.price +'</h5> </div>'
+//     var ab = '<div class="popup-bg"> <p>Added To Cart</p> </div>'
+//     $("#show-popup").html(ab);
+               jQuery.getJSON('/cart.js', function(cart) {
+   // now have access to Shopify cart object
+  // alert('There are now ' + cart.item_count + ' items in the cart.');
+                 if(cart.item_count > 0)
+                 {
+                 $(".countshow").text(cart.item_count);
+                 $("#CartCount").removeClass("hide");
+                 }
+                 else
+                 {
+                 $("#CartCount").addClass("hide");
+                 }
+} );
+  }
+
+  $(".custom_ATC").click(function () {
+    //debugger;
+     
+    var id = $(this).attr("vv"); 
+    event.preventDefault();
+    $.ajax({ 
+      type: "POST",
+      url: "/cart/add.js",
+      data:{id: id, quantity: 1},
+      dataType: "json",
+      success: abc
+        
+     
+
+});
+    $(this).val("Added To Cart"); 
+    var tt = $(this);
+    setTimeout(function () { 
+                    $(tt).val("ADD TO CART"); 
+                }, 1500);
+   
+    //$(this).parent().find("span.spn_success").show();
+  });
+  
+
+
+    // Cart Counter
+    setInterval(function () {
+      jQuery.getJSON('/cart.js', function(cart) {
+   		// now have access to Shopify cart object
+        $(".miniCart_count").text(cart.item_count);
+//         alert('There are now ' + cart.item_count + ' items in the cart.');
+      });
+    }, 1000);

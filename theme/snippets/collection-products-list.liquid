@@ -1,2 +1,17 @@
 {% comment %} Product list {% endcomment %}
-<section class="productsList section"></section>
+
+<section class="productsList section page-width">
+  
+  {% for card_product in collection.products %}
+    {% render "product-card", card_product: card_product %}
+    {% if forloop.index == 4 %}
+    <div class="product_banner_image_main">
+    <img src="{{ 'product_banner.jpg' | asset_url }}">
+  </div>
+    {% endif %}
+  {% endfor %} 
+  
+</section>
+
+ 
+
