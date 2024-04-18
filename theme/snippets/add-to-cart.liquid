@@ -1,0 +1,13 @@
+<!-- Add class in header data-cart-count span div -->
+<span class="countshow hidden-value" data-cart-count>{{ cart.item_count }}</span>
+
+<!-- Add Snippedts  -->
+<form method="post" action="/cart/add">
+  <input type="hidden" name="id" value="{{ card_product.variants.first.id }}" />
+  <!--<input min="1" type="number" id="quantity" name="quantity" value="1"/> -->
+  <input id="open" vv="{{ card_product.variants.first.id}}" type="submit" value="ADD TO CART - {{ card_product.price | money }}" class="custom_ATC btn feature-collection--cart" />
+  <span style="display:none;" class="spn_success">Item Added to Cart</span>
+</form>
+<!-- // Add in Js File -->
+
+ 
